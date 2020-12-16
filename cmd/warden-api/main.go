@@ -10,7 +10,7 @@ import (
 func main() {
 	app := application.Default()
 	app.Get("/", func(req request.Payload, api *gohome.API) http.ResponseWriter {
-		return api.ResponseSuccess(200, "ok")
+		return api.ResponseSuccess(200, "asd khasdasdbsadboas")
 	})
 
 	app.Start()
