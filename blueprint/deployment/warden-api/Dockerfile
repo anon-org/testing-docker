@@ -1,5 +1,5 @@
 # setup builder
-FROM golang:1.15.6-alpine as builder
+FROM 916622979474.dkr.ecr.ap-southeast-1.amazonaws.com/base/golang:1.15.6-alpine as builder
 # set tag builder to be removed later
 LABEL tag="builder"
 
@@ -35,7 +35,7 @@ COPY . .
 RUN CGO_ENABLED=0 go build \
     -o /builder/warden-api ./cmd/warden-api/main.go
 
-FROM ubuntu:18.04
+FROM 916622979474.dkr.ecr.ap-southeast-1.amazonaws.com/base/ubuntu:18.04
 WORKDIR /app
 COPY --from=builder /builder .
 ARG APPLICATION_ENVIRONMENT
