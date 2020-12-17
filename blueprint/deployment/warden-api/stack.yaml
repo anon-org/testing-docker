@@ -1,0 +1,28 @@
+version: '3.7'
+
+networks:
+  main-overlay:
+    external: true
+
+services:
+  warden-api:
+    image: 916622979474.dkr.ecr.ap-southeast-1.amazonaws.com/stg/warden-api:latest
+    ports:
+    - 8000:8000
+    networks:
+      - main-overlay
+    deploy:
+      replicas: 2
+      mode: replicated
+      resources:
+        limits:
+          memory: 256M
+      update_config:
+        order: start-first
+        failure_action: rollback
+      rollback_config:
+        order: stop-first
+        parallelism: 0
+      restart_policy:
+        condition: any
+        max_attempts: 3
